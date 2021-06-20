@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
     <html lang="en">  
     <head>  
-        <title>Signup</title>  
+        <title>Login</title>  
         <meta charset="utf-8">  
         <meta name="viewport" content="width=device-width, initial-scale=1">  
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
@@ -11,7 +11,23 @@
         <div class="row justify-content-center">  
             <div class="col-md-5 shadow-sm p-3 mb-5 bg-white rounded">  
                 <h2>Login</h2>  
-                <form method="post">  
+                {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+                <form method="post"action="{% url 'login' %}">  
                     {% csrf_token %}  
                     <div class="form-group">  
                         <label for="first_name">Username</label>  
@@ -23,7 +39,13 @@
                     </div>  
          
                     </div>  
-                    <button type="submit" class="btn btn-primary">Submit</button>  
+                    <button type="submit" class="btn btn-primary">Login</button>  
+
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-12 text-center">
+                          <p>Dont have an account? <a href="{% url 'signup' %}" class="text-primary m-l-5"><b>Signup</b></a></p>
+                        </div>
+                      </div>
                 </form>  
             </div>  
         </div>  
