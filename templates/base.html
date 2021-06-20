@@ -1,0 +1,524 @@
+{% load static %}
+
+{% if request.user.seller and request.user.business_auth %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4549382995113099');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4549382995113099&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Facebook Pixel Code -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KKTMN5JJMH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KKTMN5JJMH');
+</script>  
+
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ff1aa232-1c9a-4a8d-8789-d41c3ad2016c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    {{form.media}}
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/logo-light-icon.png' %}">
+    <title>{% block title %}Flower Finance{% endblock %}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="{% static 'assets/plugins/chartist-js/dist/chartist.min.css' %}"" rel="stylesheet">
+    <link href="{% static 'assets/plugins/chartist-js/dist/chartist-init.css' %}"" rel="stylesheet">
+    <link href="{% static 'assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+    <!--This page css - Morris CSS -->
+    <link href="{% static 'assets/plugins/c3-master/c3.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'payments/css/style.css' %}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{% static 'payments/css/colors/default-dark.css' %}" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+  
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{% static 'assets/images/logo-light-icon.png' %}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                    
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                         <!-- dark Logo text -->
+                         <img src="{% static 'assets/images/logo-text.png' %}" alt="homepage" class="dark-logo" />
+                         <!-- Light Logo text -->    
+                         <img src="{% static 'assets/images/logo-light-text.png' %}" class="light-logo" alt="homepage" /></span> </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+         
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                    </ul>
+                  
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ================================navbar-nav mr-auto mt-md-0============================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User profile -->
+             
+                <!-- End User profile text-->
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">GENERAL</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Invoices </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{% url 'invoicep' %}">Products</a></li>
+                                <li><a href="{% url 'invoices' %}">Subscriptions</a></li>
+                              
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                        <li> <a class="waves-effect waves-dark" href="{% url 'subscriptions' %}" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">Subscriptions </span></a> </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'customers' %}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Customers </span></a> </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'transactions' %}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Transactions </span></a> </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'product' %}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Products </span></a> </li>
+
+                        <li> <a class="waves-effect waves-dark" href="{% url 'subplan' %}" aria-expanded="false"><i class="mdi mdi-book-open"></i><span class="hide-menu">Subscription Plans </span></a> </li>
+                              
+                       
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+            <!-- Bottom points-->
+            <div class="sidebar-footer">
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                <!-- item--><a href="{% url 'logout' %}" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+            <!-- End Bottom points-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+
+
+
+
+        <!-- Page wrapper  -->
+        {% block content %}
+        {% endblock %}
+    <!-- End Wrapper -->
+
+
+    
+    
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'payments/js/jquery.slimscroll.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'payments/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'payments/js/sidebarmenu.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'payments/js/custom.min.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- chartist chart -->
+    <script src="{% static 'assets/plugins/chartist-js/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js'  %}"></script>
+    <!--c3 JavaScript -->
+    <script src="{% static 'assets/plugins/d3/d3.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/c3-master/c3.min.js' %}"></script>
+    <!-- Chart JS -->
+    <script src="{% static 'payments/js/dashboard1.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="{% static 'assets/plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
+</body>
+</html>
+
+{% elif not request.user.business_auth %}
+<meta http-equiv="refresh" content="0; URL={% url 'bizsignup'%}" />
+
+
+{% elif not request.user.seller %}
+
+
+<!DOCTYPE html>
+
+<html class="style-black-1  custom_fonts comps live_website"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- This page is running on Unicorn Platform. -->
+	<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ff1aa232-1c9a-4a8d-8789-d41c3ad2016c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'style-u.css'%}">
+	
+		<link href="{% static 'main.7d935f54284e.css'%}" rel="stylesheet">
+
+        <meta co<scriptntent="Try" property="og:title">
+            <meta content="Try" property="twitter:title">
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+ 
+	<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4549382995113099');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4549382995113099&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Facebook Pixel Code -->
+	
+		<link rel="icon" type="image/png" href="{% static 'assets/images/logo-light-icon.png' %}" sizes="16x16">
+	
+	<meta property="og:type" content="website">
+    
+        <title>Stripe Connect | Flower Payments</title>
+        <meta property="og:title" content="Checkout | Flower Payments">
+        <meta name="twitter:title" content="Checkout | Flower Payments">
+        <style>
+            header {
+                padding-bottom: 40px;
+            }
+        </style>
+	
+	
+    
+</head>
+
+<body class="font-lato comps" id="114476-242355" data-new-gr-c-s-check-loaded="14.1007.0" data-gr-ext-installed="">
+
+    
+	
+	
+
+	<nav class="js-nav nav-02 ">
+		<div class="container container--large">
+			<div class="nav-02__box">
+				<div class="nav-02__logo"><a class="nav-02__link" href="https://flowerappsui.unicornplatform.page/" target="_self">
+					
+						<img loading="lazy" class="nav-02__logo_img" src="{% static 'assets/images/logo-light-icon.png' %}" height="30" alt="Logo icon (1)">
+					
+					
+						<span class="nav-02__logo_text  text-white ">Flower Finance</span>
+					
+				</a></div>
+				<div class="nav-02__links js-menu">
+					<div class="nav-02__list_wrapper   nav-02__list_wrapper--black ">
+						<ul class="nav-02__list nav-02__list--desktop">
+                        
+                        
+                            
+
+
+    
+
+                        
+							<li class="nav-02__item">
+								
+	
+<div class="buttons-set"><ul class="buttons-set__list"></ul></div>
+
+							</li>
+						</ul>
+						<ul class="nav-02__list nav-02__list--mobile">
+                            
+                            
+                                
+
+
+    
+
+                            
+							<li class="nav-02__item">
+								
+	
+<div class="buttons-set"><ul class="buttons-set__list"></ul></div>
+
+							</li>
+						</ul>
+					</div>
+					
+						
+							
+						
+					
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+
+	<div class="page-component__bg_image_box bg-mature-color  first_component   " id="header-03-255121">
+		<div class="page-component__bg_overlay_box ">
+			
+		</div>
+		<div style="position: relative;z-index: 12;">
+			
+			
+	
+	
+	
+	
+	<header class="header-03">
+		<div class="header-03__box">
+			<div class="header-03__overlay">
+				<div class="container container--mid header-03__container">
+					<div class="header-03__card_holder">
+						<div class="header-03__card header-03__card--bottom"></div>
+						<div class="header-03__card header-03__card--middle"></div>
+						<div class="header-03__card header-03__card--top">
+							<div class="header-03__card_content">
+								
+									
+										<h1 class="heading heading--accent header-03__heading">Connect Stripe</h1>
+									
+								
+								
+									<div class="header-03__text content_box ">Please connect Flower Payments with Stripe in order to continue to the dashboard</div>
+								
+								<div class="header-03__buttons">
+									
+	
+<div class="buttons-set"><ul class="buttons-set__list"><li class="buttons-set__item"><a class="button button--alt-accent-bg" href="{% url 'authorize' %}"><span class="button__text">Connect</span></a></li></ul></div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="header-03__features">
+						
+							
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
+		</div>
+	</div>
+
+	<div class="page-component__bg_image_box bg-mature-color   " id="cta_button-03-79311">
+		<div class="page-component__bg_overlay_box ">
+			
+		</div>
+		<div style="position: relative;z-index: 11;">
+			
+			
+	
+	
+	<div class="cta_button-03">
+		<div class="container container--mid">
+			<div class="cta_button-03__wrapper">
+				<div class="cta_button-03__title_box">
+					
+					
+				</div>
+				<div class="cta_button-03__button_box">
+					
+	
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+		</div>
+	</div>
+
+	<div class="page-component__bg_image_box bg-mature-color   " id="text-04-646981">
+		<div class="page-component__bg_overlay_box ">
+			
+		</div>
+		<div style="position: relative;z-index: 10;">
+			
+			
+	
+	<section>
+		<div class="text--04">
+			<div class="container container--mid">
+				
+				<div class="bottom_cta">
+					
+	
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <section>
+	<div></div>
+	</section>
+
+		</div>
+	</div>
+
+
+	
+
+
+    
+	
+	
+        
+	
+
+
+
+	
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="pswp__bg"></div>
+	<div class="pswp__scroll-wrap">
+		<div class="pswp__container">
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+		</div>
+		<div class="pswp__ui pswp__ui--hidden">
+			<div class="pswp__top-bar">
+				<div class="pswp__counter"></div>
+				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+				<button class="pswp__button pswp__button--share" title="Share"></button>
+				<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+				<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+				<div class="pswp__preloader">
+					<div class="pswp__preloader__icn">
+						<div class="pswp__preloader__cut">
+							<div class="pswp__preloader__donut"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+				<div class="pswp__share-tooltip"></div>
+			</div>
+			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+			<div class="pswp__caption">
+				<div class="pswp__caption__center"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+	.page-component__bg_image_box .page-component__bg_image_box .page-component__bg_overlay_box {
+        position: relative;
+	}
+	body .page-component__bg_overlay_box {
+		position: absolute;
+	}
+    .footer-02__text.content_box a{
+    	color: inherit !important;
+    }
+    .footer-04__info{
+	    font-size: 14px;
+    }
+</style>
+
+
+</body></html>
+
+{% endif %}
+
+

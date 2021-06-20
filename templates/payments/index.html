@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard | Flower Finance{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text">Dashboard</h3>
+              
+            </div>
+            <div class="col-md-7 col-4 align-self-center">
+                <div class="d-flex m-t-10 justify-content-end">
+                    <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                        <div class="chart-text m-r-10">
+                            <h6 class="m-b-0"><small>THIS MONTH</small></h6>
+                            <h4 class="m-t-0">$58,356</h4></div>
+                     
+                    </div>
+                    <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                        <div class="chart-text m-r-10">
+                            <h6 class="m-b-0"><small>LAST MONTH</small></h6>
+                            <h4 class="m-t-0">$48,356</h4></div>
+                        
+                    </div>
+                    <div class="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-8 col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-wrap">
+                                    <div>
+                                        <h3 class="card-title">Sales Overview</h3>
+                                        <h6 class="card-subtitle">Ample Admin Vs Pixel Admin</h6> </div>
+                                    <div class="ml-auto">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Ample</h6> </li>
+                                            <li>
+                                                <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Pixel</h6> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="amp-pxl" style="height: 360px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Our Visitors</h3>
+                        <h6 class="card-subtitle">Different Devices Used to Visit</h6>
+                        <div id="visitor" style="height:290px; width:100%;"></div>
+                    </div>
+                    <div>
+                        <hr class="m-t-0 m-b-0">
+                    </div>
+                    <div class="card-body text-center ">
+                        <ul class="list-inline m-b-0">
+                            <li>
+                                <h6 class="text-muted text-info"><i class="fa fa-circle font-10 m-r-10 "></i>Mobile</h6> </li>
+                            <li>
+                                <h6 class="text-muted  text-primary"><i class="fa fa-circle font-10 m-r-10"></i>Desktop</h6> </li>
+                            <li>
+                                <h6 class="text-muted  text-success"><i class="fa fa-circle font-10 m-r-10"></i>Tablet</h6> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card blog-widget">
+                    <div class="card-body">
+                        <div class="blog-image"><img src="{% static 'assets/images/big/img1.jpg' %}" alt="img" class="img-responsive" /></div>
+                        <h3>Business development new rules for 2017</h3>
+                        <label class="label label-rounded label-success">Technology</label>
+                        <p class="m-t-20 m-b-20">
+                            Lorem ipsum dolor sit amet, this is a consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        </p>
+                        <div class="d-flex">
+                            <div class="read"><a href="javascript:void(0)" class="link font-medium">Read More</a></div>
+                            <div class="ml-auto">
+                                <a href="javascript:void(0)" class="link m-r-10 " data-toggle="tooltip" title="Like"><i class="mdi mdi-heart-outline"></i></a> <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="Share"><i class="mdi mdi-share-variant"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap">
+                            <div>
+                                <h3 class="card-title">Newsletter Campaign</h3>
+                                <h6 class="card-subtitle">Overview of Newsletter Campaign</h6>
+                            </div>
+                            <div class="ml-auto align-self-center">
+                                <ul class="list-inline m-b-0">
+                                    <li>
+                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Open Rate</h6> </li>
+                                    <li>
+                                        <h6 class="text-muted text-info"><i class="fa fa-circle font-10 m-r-10"></i>Recurring Payments</h6> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="campaign ct-charts"></div>
+                        <div class="row text-center">
+                            <div class="col-lg-4 col-md-4 m-t-20">
+                                <h1 class="m-b-0 font-light">5098</h1><small>Total Sent</small></div>
+                            <div class="col-lg-4 col-md-4 m-t-20">
+                                <h1 class="m-b-0 font-light">4156</h1><small>Mail Open Rate</small></div>
+                            <div class="col-lg-4 col-md-4 m-t-20">
+                                <h1 class="m-b-0 font-light">1369</h1><small>Click Rate</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-md-4">
+                <div class="card card-inverse card-primary">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="m-r-20 align-self-center">
+                                <h1 class="text-white"><i class="ti-pie-chart"></i></h1></div>
+                            <div>
+                                <h3 class="card-title">Bandwidth usage</h3>
+                                <h6 class="card-subtitle">March  2017</h6> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 align-self-center">
+                                <h2 class="font-light text-white">50 GB</h2>
+                            </div>
+                            <div class="col-8 p-t-10 p-b-20 align-self-center">
+                                <div class="usage chartist-chart" style="height:65px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-4 col-md-4">
+                <div class="card card-inverse card-success">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="m-r-20 align-self-center">
+                                <h1 class="text-white"><i class="icon-cloud-download"></i></h1></div>
+                            <div>
+                                <h3 class="card-title">Download count</h3>
+                                <h6 class="card-subtitle">March  2017</h6> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 align-self-center">
+                                <h2 class="font-light text-white">35487</h2>
+                            </div>
+                            <div class="col-8 p-t-10 p-b-20 text-right">
+                                <div class="spark-count" style="height:65px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-4 col-md-4">
+                <div class="card">
+                    <img class="" src="{% static 'assets/images/background/weatherbg.jpg' %}" alt="Card image cap">
+                    <div class="card-img-overlay" style="height:110px;">
+                        <h3 class="card-title text-white m-b-0 dl">New Delhi</h3>
+                        <small class="card-text text-white font-light">Sunday 15 march</small>
+                    </div>
+                    <div class="card-body weather-small">
+                        <div class="row">
+                            <div class="col-8 b-r align-self-center">
+                                <div class="d-flex">
+                                    <div class="display-6 text-info"><i class="wi wi-day-rain-wind"></i></div>
+                                    <div class="m-l-20">
+                                        <h1 class="font-light text-info m-b-0">32<sup>0</sup></h1>
+                                        <small>Sunny Rainy day</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <h1 class="font-light m-b-0">25<sup>0</sup></h1>
+                                <small>Tonight</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <!-- Row -->
+        <!-- Row -->
+        
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <footer class="footer"> © 2021 Flower Finance</footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+
+        {% endblock %}
