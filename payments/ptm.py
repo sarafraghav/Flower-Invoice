@@ -21,7 +21,7 @@ def StripeAuthorizeView(request):
             'response_type': 'code',
             'scope': 'read_write',
             'client_id': settings.STRIPE_CONNECT_CLIENT_ID,
-            'redirect_uri': f'http://app.flowerfinance.io/oauth/callback'
+            'redirect_uri': f'https://app.flowerapps.io/oauth/callback'
         }
         url = f'{url}?{urllib.parse.urlencode(params)}'
         return redirect(url)
@@ -69,7 +69,6 @@ def StripeAuthorizeCallbackView(request):
                                },
                                stripe_account = user.stripe_user_id
                             )
-            print(x.id)
             business.stripe_id = x
 
 
