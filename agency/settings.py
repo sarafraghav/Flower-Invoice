@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['herokudjangoapp.herokuapp.com','18.136.212.110']
+ALLOWED_HOSTS = ['herokudjangoapp.herokuapp.com','18.136.212.110','127.0.0.1']
 
 
 # Application definition
