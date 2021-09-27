@@ -8,6 +8,12 @@ from django.contrib.auth.models import User
 import json
 from django.http import HttpResponseRedirect
 # Create your views here.
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+
+
 def buy(request, stockid):
     if subsplans.objects.filter(id=stockid).exists():
        i = subsplans.objects.get(id=stockid)
