@@ -162,13 +162,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'sarafraghav1@gmail.com'
 
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+BROKER_URL = 'amqps://fcqqjcby:wrsZFkntXCUj7X8WXm1C0zf_CU5258aN@hornet.rmq.cloudamqp.com/fcqqjcby'
+CELERY_RESULT_BACKEND = 'amqps://fcqqjcby:wrsZFkntXCUj7X8WXm1C0zf_CU5258aN@hornet.rmq.cloudamqp.com/fcqqjcby'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Dhaka'
-
+BROKER_POOL_LIMIT = 3
 
 STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
