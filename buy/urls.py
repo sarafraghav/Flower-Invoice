@@ -15,7 +15,7 @@ urlpatterns = [
     path('webhook', views.webhook_received , name='webhook'),
     url(r'^invoice/sub/(?P<stockid>[0-9]+)/$', views.in_sub , name='insub'),
     url(r'^invoice/prod/(?P<stockid>[0-9]+)/$', views.in_prod , name='inprod'),
-   
+    path('sentry-debug/', views.trigger_error),
  ]
 
 
