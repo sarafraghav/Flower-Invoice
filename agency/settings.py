@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'djcelery',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'buy',
@@ -162,8 +163,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'sarafraghav1@gmail.com'
 
-BROKER_URL = 'amqps://fcqqjcby:wrsZFkntXCUj7X8WXm1C0zf_CU5258aN@hornet.rmq.cloudamqp.com/fcqqjcby'
-CELERY_RESULT_BACKEND = 'amqps://fcqqjcby:wrsZFkntXCUj7X8WXm1C0zf_CU5258aN@hornet.rmq.cloudamqp.com/fcqqjcby'
+BROKER_URL = 'amqp://fcqqjcby:wrsZFkntXCUj7X8WXm1C0zf_CU5258aN@hornet.rmq.cloudamqp.com/fcqqjcby'
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
