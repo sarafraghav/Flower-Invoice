@@ -40,8 +40,8 @@ def in_prod(request, stockid):
        i = invoice_p.objects.get(id=stockid)
        stripe.api_key = settings.STRIPE_SECRET_KEY
        prod = ot_product.objects.get(id=stockid)
-       z = stripe.Price.retrieve(prod.stripe_price_id)
-       r = z['unit_amount']
+       z = stripe.Price.retrieve(prod.stripe_price_id,stripe_account=prod.user.seller.stripe_user_id)
+       r =  str(z['currency']).upper() +' '+ str(z['unit_amount']/100)
        context = {'obj':i,'pric':r}
        template = "buy/invoicep.html"
        return render(request , template,context)
@@ -54,9 +54,12 @@ def in_sub(request, stockid):
        i = invoice_s.objects.get(id=stockid)
        stripe.api_key = settings.STRIPE_SECRET_KEY
        prod = subsplans.objects.get(id=stockid)
-       z = stripe.Price.retrieve(prod.stripe_price_id)
-       r = z['unit_amount']
-       context = {'obj':i,'pric':r}
+       z = stripe.Price.retrieve(prod.stripe_price_id,stripe_account=prod.user.seller.stripe_user_id)
+       r =  str(z['currency']).upper() +' '+ str(z['unit_amount']/100)
+       e = stripe.Price.retrieve(prod.price_setupfees,stripe_account=prod.user.seller.stripe_user_id)
+       p =  str(e['currency']).upper() +' '+ str(e['unit_amount']/100)
+       o = z['unit_amount']/100 + e['unit_amount']/100
+       context = {'obj':i,'pric':[r,p],'total':o}
        template = "buy/invoices.html"
        return render(request,template ,context)
     else:
