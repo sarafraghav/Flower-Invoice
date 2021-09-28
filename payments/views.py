@@ -28,7 +28,7 @@ UserModel = get_user_model()
 
 #_--------------
 
-from .tasks import my_first_task, mail_sender
+from .tasks import mail_sender
 
 def signup(request):
     if request.method == 'GET':
@@ -41,8 +41,8 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your account.'
-            message = render_to_string('emails/acc_active_email.html', {
+            mail_subject = "Activate your account."
+            message = render_to_string("emails/acc_active_email.html", {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
