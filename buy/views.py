@@ -38,7 +38,11 @@ def in_prod(request, stockid):
     print(stockid)
     if invoice_p.objects.filter(id=stockid).exists():
        i = invoice_p.objects.get(id=stockid)
-       context = {'obj':i}
+       stripe.api_key = settings.STRIPE_SECRET_KEY
+       prod = ot_product.objects.get(id=stockid)
+       z = stripe.Price.retrieve(prod.stripe_price_id)
+       r = z['unit_amount']
+       context = {'obj':i,'pric':r}
        template = "buy/invoicep.html"
        return render(request , template,context)
     else:
@@ -48,7 +52,11 @@ def in_prod(request, stockid):
 def in_sub(request, stockid):
     if invoice_s.objects.filter(id=stockid).exists():
        i = invoice_s.objects.get(id=stockid)
-       context = {'obj':i}
+       stripe.api_key = settings.STRIPE_SECRET_KEY
+       prod = subsplans.objects.get(id=stockid)
+       z = stripe.Price.retrieve(prod.stripe_price_id)
+       r = z['unit_amount']
+       context = {'obj':i,'pric':r}
        template = "buy/invoices.html"
        return render(request,template ,context)
     else:
