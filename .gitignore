@@ -1,5 +1,5 @@
 venv
-agency\.env
+.env
 *.pyc
 db.sqlite3
 
