@@ -31,7 +31,7 @@ SECRET_KEY = config ("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['flowerinvoice.herokuapp.com','18.136.212.110','127.0.0.1','app.flowerapps.io','54.179.114.16']
+ALLOWED_HOSTS = ['127.0.0.1','app.flowerapps.io']
 
 
 # Application definition
@@ -148,18 +148,18 @@ LOGIN_URL = '/login'
 STRIPE_CONNECT_CLIENT_ID= config ("STRIPE_CONNECT_CLIENT_ID")
 STRIPE_SIGNING_SECRET = config ("STRIPE_SIGNING_SECRET")
 STRIPE_PUBLISHABLE_KEY = config ("STRIPE_PUBLISHABLE_KEY")
-STRIPE_SECRET_KEY = config ("STRIPE_SECRET_KEY")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
 
 UPLOADCARE = {
     'pub_key': 'ac5e39c567beeaadef7a',
-    'secret': '843e169bd963b9aaf14f',
+    'secret': config("up_secret"),
 }
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
 MAILER_EMAIL_BACKEND = EMAIL_BACKEND  
 EMAIL_HOST = 'smtp.sendgrid.net'  
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_HOST_USER = 'apikey'
 EMAIL_PORT = 587  
 EMAIL_USE_TLS = True
@@ -168,7 +168,7 @@ DEFAULT_FROM_EMAIL = 'sarafraghav1@gmail.com'
 #BROKER_URL = 'redis://localhost:6379'
 #CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-BROKER_URL = 'amqp://fcqqjcby:wrsZFkntXCUj7X8WXm1C0zf_CU5258aN@hornet.rmq.cloudamqp.com/fcqqjcby'
+BROKER_URL = config("BROKER_URL")
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 
 CELERY_ACCEPT_CONTENT = ['application/json']
