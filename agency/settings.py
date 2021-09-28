@@ -13,8 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-env = environ.Env()
-environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -143,10 +142,10 @@ LOGIN_URL = '/login'
 
 
 
-STRIPE_CONNECT_CLIENT_ID= env("STRIPE_CONNECT_CLIENT_ID")
-STRIPE_SIGNING_SECRET = env("STRIPE_SIGNING_SECRET")
-STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY")
-STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+STRIPE_CONNECT_CLIENT_ID= os.environ.get("STRIPE_CONNECT_CLIENT_ID")
+STRIPE_SIGNING_SECRET = os.environ.get("STRIPE_SIGNING_SECRET")
+STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
 UPLOADCARE = {
     'pub_key': 'ac5e39c567beeaadef7a',
