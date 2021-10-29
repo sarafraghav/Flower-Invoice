@@ -12,7 +12,7 @@ urlpatterns = [
     path('', views.Invoice.Product.invoicep, name='home'),
     path('authorize/', ptm.StripeAuthorizeView, name='authorize'),
     path('oauth/callback/', ptm.StripeAuthorizeCallbackView, name='authorize_callback'),
-     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
+    path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 
 #Invoice 
     
