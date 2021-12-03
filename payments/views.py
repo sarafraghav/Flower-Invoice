@@ -275,11 +275,7 @@ class Overview():
 
 
 
-@login_required
-def coupons(request):
-    context = {}
-    template = 'payments/Catalog/coupons.html'
-    return render(request, template, context)
+
 @login_required
 def deleter(request,stockid):
     x= stockid.split('.')

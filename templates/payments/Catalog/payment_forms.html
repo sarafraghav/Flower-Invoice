@@ -69,10 +69,10 @@
                                                 <td>{{ item.name }}</td>
                                                 <td>{{ item.description }}</td>
                                                 <td>{{ item.address }}</td>  
-                                                <td><a href="http://{{ request.META.HTTP_HOST }}/invoice/prod/{{ item.id }}" target="_blank">Link</a></td>
+                                                <td><a href="{% url 'inprod' stockid=item.id %}" target="_blank">Link</a></td>
                                                 <td>{{ item.product.name }}</td>
-                                                <td><a href='https://{{ request.META.HTTP_HOST }}/delete/ip.{{ item.id }}'>Delete</a></td>
-                                                <td><a href='https://{{ request.META.HTTP_HOST }}/edit/ip.{{ item.id }}'>Edit</a></td>
+                                                <td><a href='http://{{ request.META.HTTP_HOST }}/delete/ip.{{ item.id }}'>Delete</a></td>
+                                                <td><a href='http://{{ request.META.HTTP_HOST }}/edit/ip.{{ item.id }}'>Edit</a></td>
                                            
                                             
                                             </tr>
