@@ -1,10 +1,12 @@
 console.log("Sanity check!");
 var x = window.location.href.match(/\/([^\/]+)\/?$/)[1];
 var y = window.location.href.match(/([^\/]+)\/[^\/]+\/[^\/]+\/?$/)[1];
-console.log(y)
+
+
+
 
 // Get Stripe publishable key
-fetch("/config/"+x)
+fetch("/config/"+x+"/"+y)
 .then((result) => { return result.json(); })
 .then((data) => {
   console.log(data);

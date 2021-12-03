@@ -35,11 +35,10 @@ def buy_prod(request, stockid):
         raise Http404("Poll does not exist")       
 
 def in_prod(request, stockid):
-    print(stockid)
     if invoice_p.objects.filter(id=stockid).exists():
        i = invoice_p.objects.get(id=stockid)
        stripe.api_key = settings.STRIPE_SECRET_KEY
-       prod = ot_product.objects.get(id=stockid)
+       prod = i.product
        z = stripe.Price.retrieve(prod.stripe_price_id,stripe_account=prod.user.seller.stripe_user_id)
        r =  str(z['currency']).upper() +' '+ str(z['unit_amount']/100)
        context = {'obj':i,'pric':r}
@@ -47,13 +46,13 @@ def in_prod(request, stockid):
        return render(request , template,context)
     else:
         from django.http import Http404
-        raise HttpResponse("Hello")    
+        raise HttpResponse("Error")    
 
 def in_sub(request, stockid):
     if invoice_s.objects.filter(id=stockid).exists():
        i = invoice_s.objects.get(id=stockid)
        stripe.api_key = settings.STRIPE_SECRET_KEY
-       prod = subsplans.objects.get(id=stockid)
+       prod = i.product
        z = stripe.Price.retrieve(prod.stripe_price_id,stripe_account=prod.user.seller.stripe_user_id)
        r =  str(z['currency']).upper() +' '+ str(z['unit_amount']/100)
        e = stripe.Price.retrieve(prod.price_setupfees,stripe_account=prod.user.seller.stripe_user_id)
@@ -67,26 +66,28 @@ def in_sub(request, stockid):
         raise Http404("Poll does not exist")    
 
 @csrf_exempt
-def stripe_config(request,stockid):
+def stripe_config(request,stockid,limited):
     if request.method == 'GET':
-        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':subsplans.objects.get(id=stockid).user.seller.stripe_user_id,}
-        return JsonResponse(stripe_config, safe=False)
-
-@csrf_exempt
-def stripe_config_si(request,stockid):
-    if request.method == 'GET':
-        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':invoice_s.objects.get(id=stockid).user.seller.stripe_user_id,}
-        return JsonResponse(stripe_config, safe=False)
-
-@csrf_exempt
-def stripe_config_p(request,stockid):
-    if request.method == 'GET':
-        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':ot_product.objects.get(id=stockid).user.seller.stripe_user_id,}
+        if limited == "buy":
+               stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':subsplans.objects.get(id=stockid).user.seller.stripe_user_id,}
+        elif limited == "invoice":
+                stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':invoice_s.objects.get(id=stockid).user.seller.stripe_user_id,}
         return JsonResponse(stripe_config, safe=False)
 
 
 @csrf_exempt
-def create_checkout_session(request,stockid, limited):
+def stripe_config_p(request,stockid,limited):
+    if request.method == 'GET':
+        if limited == "buy":
+               stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':ot_product.objects.get(id=stockid).user.seller.stripe_user_id,}
+        elif limited == "invoice":
+                stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY, 'stripe_account':invoice_p.objects.get(id=stockid).user.seller.stripe_user_id,}
+        
+        return JsonResponse(stripe_config, safe=False)
+
+
+@csrf_exempt
+def create_checkout_session(request,stockid,limited):
     
     if request.method == 'GET':
         domain_url ="https://"+ request.META['HTTP_HOST']
@@ -95,7 +96,7 @@ def create_checkout_session(request,stockid, limited):
             if limited == "buy":
                prod = subsplans.objects.get(id=stockid)
             elif limited == "invoice":
-                prod = invoice_s.objects.filter(product = stockid)[0].product
+                prod = invoice_s.objects.filter(id= stockid)[0].product
             if int(prod.trial) > 0:
              checkout_session = stripe.checkout.Session.create(
                 success_url=domain_url + '/success/{CHECKOUT_SESSION_ID}/'+prod.user.seller.stripe_user_id +"/"+str(prod.id),
@@ -143,12 +144,16 @@ def create_checkout_session(request,stockid, limited):
             return JsonResponse({'error': str(e)})
 
 @csrf_exempt
-def create_checkout_session_p(request,stockid):
+def create_checkout_session_p(request,stockid,limited):
     if request.method == 'GET':
         domain_url = "https://"+request.META['HTTP_HOST']
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
-            prod = ot_product.objects.get(id=stockid)
+            if limited == "buy":
+               prod = ot_product.objects.get(id=stockid)
+            elif limited == "invoice":
+                prod = invoice_p.objects.filter(id = stockid)[0].product
+            
             checkout_session = stripe.checkout.Session.create(
                 success_url=domain_url + '/success/',
                 cancel_url=domain_url + '/buy/sub/'+stockid,
@@ -216,7 +221,6 @@ def webhook_received(request):
         if checkout_session.payment_status == "paid":
              line_items = stripe.checkout.Session.list_line_items(checkout_session.id, stripe_account= event['account'])
              for x in line_items.data:
-                 print(x.price.id)
                  if subsplans.objects.filter(stripe_price_id = x.price.id).exists():
                       c_m = customer(user=Seller.objects.get(stripe_user_id = event['account']).user,email = checkout_session.customer_details.email, active = True ,stripe_id =checkout_session.customer , stripe_sub_id = checkout_session.id, product = subsplans.objects.get(stripe_price_id= x.price.id))
                       c_m.save()

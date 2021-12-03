@@ -1,8 +1,9 @@
 console.log("Sanity check!");
 var x = window.location.href.match(/\/([^\/]+)\/?$/)[1];
+var y = window.location.href.match(/([^\/]+)\/[^\/]+\/[^\/]+\/?$/)[1];
 // Get Stripe publishable key
 console.log(x);
-fetch("/pconfig/"+x)
+fetch("/pconfig/"+x+"/"+y)
 .then((result) => { return result.json(); })
 .then((data) => {
   // Initialize Stripe.js;
@@ -12,7 +13,7 @@ fetch("/pconfig/"+x)
   // Event handler
   document.querySelector("#submitBtn").addEventListener("click", () => {
     // Get Checkout Session ID
-    fetch("/pcreate-checkout-session/"+x)
+    fetch("/pcreate-checkout-session/"+x+"/"+y)
     .then((result) => { return result.json(); })
     .then((data) => {
       console.log(data);

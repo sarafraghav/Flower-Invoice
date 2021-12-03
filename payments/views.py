@@ -198,7 +198,7 @@ class Catalog():
             def ot(request):
                 product = ot_product.objects.filter(user = request.user)
                 context = {'subplans':product}
-                template = 'payments/catalog/products.html'
+                template = 'payments/Catalog/products.html'
                 return render(request, template, context)
 
             @login_required
