@@ -70,10 +70,34 @@ def activate(request, uidb64, token):
 
 @login_required
 class administration():
+  @login_required
   def HomePageView(request):
     context = {}
     template = 'payments/index.html'
     return render(request, template, context)
+  
+  @login_required
+  def settings(request):
+    plan = request.user.business_auth
+    if request.method == 'POST':
+        form = businessmaker(request.POST, instance = plan)
+        if form.is_valid():
+              a = form.save(commit = False)
+              s = business_auth.objects.get(user = request.user)
+              s.priv_url = a.priv_url
+              s.tos_url = a.tos_url
+              s.business_name = a.business_name 
+              s.save()
+
+              return HttpResponseRedirect(reverse_lazy('home'))
+
+    else:
+      form = businessmaker(instance = plan)
+    context = {'form':form}
+    template = "payments/settings.html"
+    return render(request, template, context)
+
+  @login_required
   def signup_step(request):
     if request.method == 'POST':
         form = businessmaker(request.POST)
@@ -95,6 +119,10 @@ class administration():
     context = {'form':form}
     template = "payments/signup_process.html"
     return render(request, template, context)
+
+
+
+
 
 @login_required
 class Invoice():

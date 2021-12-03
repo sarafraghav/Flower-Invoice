@@ -9,6 +9,7 @@ urlpatterns = [
 
     path('signup/', views.signup, name='signup'),
     path('bizsignup/', views.administration.signup_step, name='bizsignup'),
+    path('settings/', views.administration.settings, name='settings'),
     path('', views.Invoice.Product.invoicep, name='home'),
     path('authorize/', ptm.StripeAuthorizeView, name='authorize'),
     path('oauth/callback/', ptm.StripeAuthorizeCallbackView, name='authorize_callback'),
@@ -38,7 +39,6 @@ urlpatterns = [
 #General 
     path('delete/<stockid>', views.deleter , name='delete'),
     path('edit/<stockid>', views.editor , name='editor'),
-    path('payment/coupons', views.coupons, name = 'coupons'),
     path('celery-test/',views.Celery, name='celery_test_url'),
     
 ]
